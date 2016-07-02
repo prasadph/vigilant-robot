@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from vigrob.views import hello
+from vigrob.views import hello, current_datetime, hours_ahead
 urlpatterns = [
+    # Home page
+    # url(r'^$', my_homepage_view),
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/$', hello)
+    url(r'^hello/$', hello),
+    url(r'^time/$', current_datetime),
+    url(r'^time/plus/(\d{1,2})/$', hours_ahead),
 ]
