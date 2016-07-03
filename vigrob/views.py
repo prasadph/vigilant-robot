@@ -1,5 +1,6 @@
 from django.http import HttpResponse, Http404
 from datetime import datetime, timedelta
+from django.template.loader import get_template
 from django.template import Template, Context
 import os
 
@@ -10,13 +11,9 @@ def hello(request):
 
 def current_datetime(request):
     now = datetime.now()
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    print(base_dir)
-    f = open(base_dir + '/templates/current_datetime.html', 'r')
-    t = Template(f.read())
-    f.close()
-    c = Context({'now': now})
-    return HttpResponse(t.render(c))
+    t = get_template('current_datetime.html')
+    html = t.render(Context({'now': now}))
+    return HttpResponse(html)
 
 
 def hours_ahead(request, offset):
