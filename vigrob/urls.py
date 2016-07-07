@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from vigrob.views import hello, current_datetime, hours_ahead
+from vigrob.views import hello, current_datetime, hours_ahead, meta_data
+from books.views import search_form, search
+
 urlpatterns = [
     # Home page
     # url(r'^$', my_homepage_view),
@@ -23,4 +25,7 @@ urlpatterns = [
     url(r'^hello/$', hello),
     url(r'^time/$', current_datetime),
     url(r'^time/plus/(\d{1,2})/$', hours_ahead),
+    url(r'^meta_data/$', meta_data),
+    url(r'^search_form/$', search_form),
+    url(r'^search/$', search),
 ]
