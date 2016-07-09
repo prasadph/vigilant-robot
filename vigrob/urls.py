@@ -13,10 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
 from vigrob.views import hello, current_datetime, hours_ahead, meta_data, contact
-from books.views import search_form, search
 
 urlpatterns = [
     # Home page
@@ -26,7 +26,10 @@ urlpatterns = [
     url(r'^time/$', current_datetime),
     url(r'^time/plus/(\d{1,2})/$', hours_ahead),
     url(r'^meta_data/$', meta_data),
-    url(r'^search_form/$', search_form),
-    url(r'^search/$', search),
     url(r'^contact/$', contact),
+    url(r'^books/', include('books.urls'))
 ]
+
+if settings.DEBUG:
+    pass
+    # urlpatterns += [url(r'^debuginfo/$', views.debug),]
