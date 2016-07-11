@@ -3,6 +3,9 @@
 	<title>Book Search</title>
 </head>
 <body>
+	{% load review_extra %}
+	<p>Custom template tag test {{ query|cut:"xyz" }} # remove xyz from string</p>
+
 	<p>You searched for: <strong>{{ query }}</strong></p>
 	{% if books %}
 		<p>Found {{ books|length }} book{{ books|pluralize }}.</p>
